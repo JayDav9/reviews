@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+
 import './App.css';
+import React from 'react'
+import { Stars } from './Stars';
+import { BadReview } from './BadReview';
+import { GoodReview } from './GoodReview';
 
 function App() {
+  const [review,setReview] = React.useState(0);
+  let reviewText;
+  if (review === 0) {
+    reviewText = <Stars setReview={setReview}/>;
+  } else if (review === 1 || review === 2 || review === 3) {
+    reviewText = <BadReview />;
+  } else if (review === 4 || review === 5) {
+    reviewText = <GoodReview />;
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <header>
+      <h1>Company Name</h1>
+     </header>
+     <main>
+    
+
+      <div>{reviewText}</div>
+     </main>
     </div>
   );
 }
